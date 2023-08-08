@@ -1,102 +1,157 @@
-import "package:flutter/material.dart";
+import 'package:flutter/material.dart';
+import 'package:my_1_app/log_in_screen.dart';
 
 void main() {
   runApp(const DemandApp());
 }
-
 class DemandApp extends StatelessWidget {
   const DemandApp({super.key});
-
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: DemandAppHome(
-        title: 'Demand_App',
-      ),
+    return MaterialApp(
+      title: 'Demand_App',
+      initialRoute: '/home',
+      routes: {
+        '/home': (context) => const DemandAppHome(),
+        '/login': (context) => LogInPage(),
+      },
     );
   }
 }
-
 class DemandAppHome extends StatefulWidget {
-  const DemandAppHome({super.key, required this.title});
-  final String title;
+  const DemandAppHome({Key? key}) : super(key: key);
   @override
   DemandAppHomeState createState() => DemandAppHomeState();
 }
-
 class DemandAppHomeState extends State<DemandAppHome> {
+  int currentIndex = 0;
   @override
   Widget build(BuildContext context) {
     List<String> text = [
-      "I Want Cuddle",
+      "I Want to Cuddle",
       "Hungry !",
       "I Feel Alone",
       "Angry",
       "Bored",
       "Smiley",
+      "Hallo",
+      "Hallo",
+      "Hallo",
+      "Hallo",
     ];
     return Scaffold(
       appBar: AppBar(
         flexibleSpace: Container(
           decoration: const BoxDecoration(
             gradient: LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                colors: <Color>[Colors.pinkAccent, Colors.yellowAccent]),
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: <Color>[Colors.pinkAccent, Colors.yellow],
+            ),
           ),
         ),
         title: const Text(
           "Demand_App",
-          selectionColor: Colors.black,
+          style: TextStyle(color: Colors.black),
+        ),
+        leading: IconButton(
+          icon: Icon(
+            Icons.menu,
+            color: Colors.black,
+          ),
+          onPressed: () {
+            Navigator.pushNamed(context, '/login');
+          },
         ),
       ),
-      body: Scaffold(
-        backgroundColor: Colors.white,
-        body: GridView.count(
-          // Create a grid with 2 columns. If you change the scrollDirection to
-          // horizontal, this produces 2 rows.
-          crossAxisCount: 2,
-          // Generate 100 widgets that display their index in the List.
-          children: List.generate(
-            text.length,
-            (index) {
-              // gib etwas drückbares zurück
-              return GestureDetector(
-                onTap: () {
-                  print("Hi Amedeo");
-                },
-                child: Center(
-                  child: Container(
-                    alignment: Alignment.center,
-                    height: 150,
-                    width: 150,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(30),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.grey.withOpacity(0.5),
-                          spreadRadius: 5,
-                          blurRadius: 7,
-                          offset: Offset(0, 3), // changes position of shadow
-                        ),
-                      ],
-                      gradient: const LinearGradient(
-                        begin: Alignment.topRight,
-                        end: Alignment.bottomLeft,
-                        colors: [
-                          Colors.purpleAccent,
-                          Colors.yellowAccent,
+      bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Colors.yellow,
+        items: const [
+          BottomNavigationBarItem(
+            label: "Home",
+            icon: Icon(
+              Icons.home,
+              color: Colors.black,
+            ),
+          ),
+          BottomNavigationBarItem(
+            label: "Play",
+            icon: Icon(Icons.gamepad, color: Colors.black),
+          ),
+        ],
+        currentIndex: currentIndex,
+        onTap: (index) {
+          setState(() {
+            currentIndex = index;
+          });
+        },
+      ),
+      body: Center(
+        child: Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topRight,
+              end: Alignment.bottomLeft,
+              stops: [
+                0.1,
+                0.4,
+                0.6,
+                0.9,
+              ],
+              colors: [
+                Colors.yellow,
+                Colors.red,
+                Colors.indigo,
+                Colors.teal,
+              ],
+            ),
+          ),
+          child: GridView.count(
+            crossAxisCount: 2,
+            children: List.generate(
+              text.length,
+              (index) {
+                return GestureDetector(
+                  onTap: () {
+                    print("Hi Amedeo");
+                  },
+                  child: Center(
+                    child: Container(
+                      alignment: Alignment.center,
+                      height: 170,
+                      width: 170,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(30),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.5),
+                            spreadRadius: 3,
+                            blurRadius: 30,
+                            offset: const Offset(0, 3),
+                          ),
                         ],
+                        gradient: const LinearGradient(
+                          begin: Alignment.topRight,
+                          end: Alignment.bottomLeft,
+                          colors: [
+                            Colors.pinkAccent,
+                            Colors.white,
+                          ],
+                        ),
+                      ),
+                      child: Text(
+                        text[index],
+                        style: const TextStyle(
+                          fontWeight: FontWeight.w800,
+                          fontSize: 16,
+                          color: Colors.black,
+                        ),
                       ),
                     ),
-                    child: Text(
-                      selectionColor: Colors.white,
-                      text[index],
-                    ),
                   ),
-                ),
-              );
-            },
+                );
+              },
+            ),
           ),
         ),
       ),
