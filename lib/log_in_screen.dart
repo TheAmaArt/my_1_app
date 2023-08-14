@@ -22,6 +22,8 @@ class LogInPage extends StatelessWidget {
       ),
       body: Center(
         child: Container(
+          height: MediaQuery.of(context).size.height,
+          width: MediaQuery.of(context).size.width,
           decoration: const BoxDecoration(
             gradient: LinearGradient(
               begin: Alignment.topRight,
@@ -40,27 +42,14 @@ class LogInPage extends StatelessWidget {
               ],
             ),
           ),
-          // // child: FloatingActionButton(
-          // //   onPressed: () {
-          // //     Navigator.pop(context);
-          //   },
+          child: GestureDetector(
+            child: Text("data",textAlign:TextAlign.center,),
+            // Navigator to homepage
+            onTap: () {
+              Navigator.pushNamed(context, '/home');
+            },
+          ),
         ),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Colors.yellow,
-        items: const [
-          BottomNavigationBarItem(
-            label: "Home",
-            icon: Icon(
-              Icons.home,
-              color: Colors.black,
-            ),
-          ),
-          BottomNavigationBarItem(
-            label: "Play",
-            icon: Icon(Icons.gamepad, color: Colors.black),
-          ),
-        ],
       ),
     );
   }
