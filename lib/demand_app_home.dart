@@ -18,7 +18,7 @@ class DemandAppHomeState extends State<DemandAppHome> {
       EmotionActions("/login", "Hallo"),
     ];
     return Scaffold(
-      drawer: Drawer(),
+      drawer: const Drawer(),
       appBar: AppBar(
         flexibleSpace: Container(
           decoration: const BoxDecoration(
@@ -49,15 +49,15 @@ class DemandAppHomeState extends State<DemandAppHome> {
         backgroundColor: Colors.yellow,
         items: const [
           BottomNavigationBarItem(
-            label: "Home",
+            label: "LogIn",
             icon: Icon(
-              Icons.home,
+              Icons.login,
               color: Colors.black,
             ),
           ),
           BottomNavigationBarItem(
-            label: "Play",
-            icon: Icon(Icons.gamepad, color: Colors.black),
+            label: "Camera",
+            icon: Icon(Icons.camera, color: Colors.black),
           ),
         ],
         currentIndex: currentIndex,

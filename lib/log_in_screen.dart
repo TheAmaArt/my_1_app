@@ -42,12 +42,46 @@ class LogInPage extends StatelessWidget {
               ],
             ),
           ),
-          child: GestureDetector(
-            child: Text("data",textAlign:TextAlign.center,),
-            // Navigator to homepage
-            onTap: () {
-              Navigator.pushNamed(context, '/home');
-            },
+          child: Column(
+            children: [
+              const SizedBox(
+                height: 60,
+              ),
+              const Text(
+                "Wilkommen",
+                style: TextStyle(fontSize: 30),
+              ),
+              const SizedBox(
+                height: 40,
+              ),
+              Container(
+                  width: 300,
+                  height: 40,
+                  color: Colors.black12,
+                  child: const TextField()),const Text("Name"),
+              const SizedBox(height: 60),
+              Container(
+                  width: 300,
+                  height: 40,
+                  color: Colors.black12,
+                  child: const TextField()),const Text("Telefonnummer"),
+              const SizedBox(height: 280),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, "/home");
+                },
+                child: const SizedBox(
+                  height: 20,
+                  width: 100,
+                  child: Center(
+                    child: Text(
+                      "Log In",
+                      style: TextStyle(color: Colors.black),
+                    ),
+                  ),
+                ),
+              ),
+            ],
           ),
         ),
       ),
