@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_1_app/src/core/presentation/styles/color_styles.dart';
 
 class Menu extends StatelessWidget {
   const Menu({super.key});
@@ -9,33 +10,14 @@ class Menu extends StatelessWidget {
       body: Center(
         child: Container(
           decoration: const BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topRight,
-              end: Alignment.bottomLeft,
-              stops: [
-                0.1,
-                0.4,
-                0.7,
-                0.9,
-              ],
-              colors: [
-                Colors.yellowAccent,
-                Colors.red,
-                Colors.indigo,
-                Colors.teal,
-              ],
-            ),
+            gradient: kPrimaryBackGroundColor   
           ),
         ),
       ),
       appBar: AppBar(
         flexibleSpace: Container(
           decoration: const BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              colors: <Color>[Colors.pinkAccent, Colors.yellow],
-            ),
+            gradient: kPrimaryAppBarColor
           ),
         ),
         title: const Text("Einstellungen"),
